@@ -6,13 +6,15 @@ Ce dossier contient le code backend du projet
 
 Ouvrez un terminal à cet emplacement
 
-Pour installer les dépendances du projet, executez la commande 
-```bash 
+Pour installer les dépendances du projet, executez la commande
+
+```bash
 npm install
 ```
 
-Une fois les dépendances installées lancez le projet avec la commande 
-```bash 
+Une fois les dépendances installées lancez le projet avec la commande
+
+```bash
 npm start
 ```
 
@@ -20,9 +22,9 @@ npm start
 
 ## Compte de test pour Sophie Bluel
 
-|email|password|
-| :---------------: | :---------------: |
-|sophie.bluel@test.tld|S0phie|
+|         email         | password |
+| :-------------------: | :------: |
+| sophie.bluel@test.tld |  S0phie  |
 
 ## Accéder à Swagger
 

@@ -373,3 +373,11 @@ footer nav {
   text-decoration: underline;
   color: inherit;
 }
+
+.login-error {
+  color: #d00000;
+  margin-top: 12px;
+  min-height: 18px; /* évite que la page "saute" */
+  text-align: center;
+  font-weight: 600;
+}

@@ -12,11 +12,12 @@
     />
     <link rel="stylesheet" href="./assets/style.css" />
   </head>
+
   <body class="login-page">
-   <header>
+    <header>
       <h1>Sophie Bluel <span>ARCHITECTE D'INTÉRIEUR</span></h1>
       <nav>
-         <ul>
+        <ul>
           <li><a href="index.html">projets</a></li>
           <li><a href="index.html#contact">contact</a></li>
           <li><a href="login.html">login</a></li>
@@ -24,23 +25,27 @@
         </ul>
       </nav>
     </header>
-      <main>
-        <section class="login">
-          <h2>Log In</h2>
-          <form>
-            <label for="email">E-mail</label>
-            <input type="email" id="email" name="email" />
 
-            <label for="password">Mot de passe</label>
-            <input type="password" id="email" name="password" />
+    <main>
+      <section class="login">
+        <h2>Log In</h2>
 
-            <input type="submit" value="Se connecter" />
+        <form id="login-form">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" required />
 
-            <a class="forget-password" href="#">Mot de passe oublié</a>
-          </form>
-        </section>
-      </main>
-    </header>
+          <label for="password">Mot de passe</label>
+          <input type="password" id="password" name="password" required />
+
+          <p id="login-error" class="login-error" aria-live="polite"></p>
+
+          <input type="submit" value="Se connecter" />
+
+          <a class="forget-password" href="#">Mot de passe oublié</a>
+        </form>
+      </section>
+    </main>
+
     <footer>
       <nav>
         <ul>
@@ -48,5 +53,7 @@
         </ul>
       </nav>
     </footer>
+
+    <script src="./login.js" defer></script>
   </body>
 </html>
