@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
@@ -10,17 +10,27 @@
       href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
     <meta name="description" content="" />
     <link rel="stylesheet" href="./assets/style.css" />
   </head>
   <body>
+    <div id="edit-banner" style="display: none">
+      <i class="fa-regular fa-pen-to-square"></i>
+      <span>Mode édition</span>
+    </div>
+
     <header>
       <h1>Sophie Bluel <span>ARCHITECTE D'INTÉRIEUR</span></h1>
       <nav>
         <ul>
           <li><a href="index.html">projets</a></li>
           <li><a href="#contact">contact</a></li>
-          <li class="active"><a href="login.html">login</a></li>
+          <li class="active"><a id="nav-login" href="login.html">login</a></li>
           <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
         </ul>
       </nav>
@@ -50,8 +60,14 @@
         </article>
       </section>
       <section id="portfolio">
-        <h2>Mes projets</h2>
-        <div class="filters"></div>
+        <div class="edits">
+          <h2>Mes projets</h2>
+          <div id="edit-button" style="display: none">
+            <i class="fa-regular fa-pen-to-square"></i>
+            <span>Modifier</span>
+          </div>
+        </div>
+        <div id="filters" class="filters"></div>
         <div class="gallery"></div>
       </section>
       <section id="contact">

@@ -1,3 +1,6 @@
+console.log("script.js chargé");
+console.log("Token :", localStorage.getItem("token"));
+
 /***********************
  *  CONFIGURATION API
  ***********************/
@@ -9,6 +12,42 @@ const CATEGORIES_URL = `${API_BASE}/categories`;
  *  VARIABLES GLOBALES
  ************************/
 let allWorks = [];
+
+/************************
+ *  MODE ÉDITION (PAGE D'ACCUEIL)
+ ************************/
+function applyEditMode() {
+  const token = localStorage.getItem("token");
+
+  const editBanner = document.getElementById("edit-banner");
+  const loginLink = document.getElementById("nav-login");
+  const filters = document.getElementById("filters");
+  const editButton = document.getElementById("edit-button");
+
+  if (token) {
+    // Mode connecté
+    editBanner.style.display = "block";
+    filters.style.display = "none";
+    editButton.style.display = "block";
+
+    loginLink.textContent = "logout";
+    loginLink.href = "#";
+
+    loginLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      localStorage.removeItem("token");
+      window.location.reload();
+    });
+  } else {
+    // Mode non connecté
+    editBanner.style.display = "none";
+    filters.style.display = "";
+    editButton.style.display = "none";
+
+    loginLink.textContent = "login";
+    loginLink.href = "login.html";
+  }
+}
 
 /************************
  *  APPEL API (FETCH)
@@ -56,8 +95,6 @@ function displayWorks(works) {
 /************************
  *  GESTION DES FILTRES
  ************************/
-
-/* Gestion du bouton actif */
 function setActiveButton(button) {
   document.querySelectorAll(".filters button").forEach((btn) => {
     btn.classList.remove("active");
@@ -65,16 +102,13 @@ function setActiveButton(button) {
   button.classList.add("active");
 }
 
-/* Création dynamique des filtres */
 function createFilters(categories) {
   const container = document.querySelector(".filters");
   container.innerHTML = "";
 
-  /* Bouton "Tous" */
   const allBtn = document.createElement("button");
   allBtn.textContent = "Tous";
   allBtn.classList.add("active");
-  allBtn.dataset.categoryId = "all";
 
   allBtn.addEventListener("click", () => {
     setActiveButton(allBtn);
@@ -83,21 +117,15 @@ function createFilters(categories) {
 
   container.appendChild(allBtn);
 
-  /* Boutons catégories */
   categories.forEach((cat) => {
     const btn = document.createElement("button");
     btn.textContent = cat.name;
-    btn.dataset.categoryId = cat.id;
 
-    btn.addEventListener("click", (e) => {
+    btn.addEventListener("click", () => {
       setActiveButton(btn);
-
-      const categoryId = Number(e.currentTarget.dataset.categoryId);
-
       const filteredWorks = allWorks.filter(
-        (work) => Number(work.categoryId) === categoryId
+        (work) => Number(work.categoryId) === Number(cat.id)
       );
-
       displayWorks(filteredWorks);
     });
 
@@ -116,7 +144,6 @@ async function init() {
     ]);
 
     allWorks = works;
-
     createFilters(categories);
     displayWorks(allWorks);
   } catch (err) {
@@ -129,4 +156,7 @@ async function init() {
 /************************
  *  LANCEMENT AU CHARGEMENT
  ************************/
-document.addEventListener("DOMContentLoaded", init);
+document.addEventListener("DOMContentLoaded", () => {
+  applyEditMode();
+  init();
+});

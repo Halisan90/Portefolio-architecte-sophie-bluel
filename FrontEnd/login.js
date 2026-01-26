@@ -28,16 +28,33 @@ document.addEventListener("DOMContentLoaded", () => {
       body: JSON.stringify({ email, password }),
     })
       .then((res) => {
-        if (!res.ok)
+        if (!res.ok) {
           throw new Error("Erreur dans l’identifiant ou le mot de passe");
+        }
         return res.json();
       })
       .then((data) => {
+        /***********************
+         *  VÉRIFICATION TOKEN
+         ***********************/
+        if (!data.token) {
+          throw new Error("Token manquant dans la réponse API");
+        }
+
+        /***********************
+         *  STOCKAGE + REDIRECTION
+         ***********************/
         localStorage.setItem("token", data.token);
         window.location.href = "index.html";
       })
       .catch((err) => {
+        /***********************
+         *  AFFICHAGE ERREUR
+         ***********************/
         errorEl.textContent = err.message;
+
+        // Optionnel : vider le champ mot de passe après erreur
+        passwordInput.value = "";
       });
   });
 });

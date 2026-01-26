@@ -133,21 +133,23 @@ table {
 }
 /** end reset css**/
 body {
-  max-width: 1140px;
-  margin: auto;
   font-family: "Work Sans";
   font-size: 14px;
 }
 header {
   display: flex;
   justify-content: space-between;
-  margin: 50px 0;
-}
-section {
-  margin: 50px 0;
+  align-items: center;
+  margin: 50px 100px;
+  height: 42px;
 }
 main {
-  margin: 100px;
+  max-width: 950px;
+  margin: auto;
+}
+
+section {
+  margin: 50px 0;
 }
 
 h1 {
@@ -212,6 +214,7 @@ li:hover {
   display: flex;
   align-items: center;
   padding-bottom: 70px;
+  padding-top: 50px;
 }
 #introduction figure {
   flex: 1;
@@ -233,9 +236,13 @@ li:hover {
   max-width: 410px;
 }
 
-#portfolio h2 {
+.edits {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
   text-align: center;
-  margin-bottom: 1.4em;
+  margin-bottom: 80px;
 }
 .gallery {
   width: 100%;
@@ -380,4 +387,19 @@ footer nav {
   min-height: 18px; /* évite que la page "saute" */
   text-align: center;
   font-weight: 600;
+}
+
+/***********************
+ *  BANDEAU MODE ÉDITION
+ ***********************/
+#edit-banner {
+  width: 100%;
+  height: 3rem;
+  background-color: #000000;
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 16px;
+  display: flex;
+  text-align: center;
+  padding-top: 25px;
 }
