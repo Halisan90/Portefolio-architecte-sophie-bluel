@@ -26,7 +26,7 @@ function applyEditMode() {
 
   if (token) {
     // Mode connecté
-    editBanner.style.display = "block";
+    editBanner.style.display = "flex";
     filters.style.display = "none";
     editButton.style.display = "block";
 
@@ -124,7 +124,7 @@ function createFilters(categories) {
     btn.addEventListener("click", () => {
       setActiveButton(btn);
       const filteredWorks = allWorks.filter(
-        (work) => Number(work.categoryId) === Number(cat.id)
+        (work) => Number(work.categoryId) === Number(cat.id),
       );
       displayWorks(filteredWorks);
     });
@@ -144,8 +144,10 @@ async function init() {
     ]);
 
     allWorks = works;
+
     createFilters(categories);
     displayWorks(allWorks);
+    displayModalWorks(allWorks);
   } catch (err) {
     console.error(err);
     document.querySelector(".gallery").innerHTML =
@@ -154,9 +156,106 @@ async function init() {
 }
 
 /************************
+ *  MODALE : OUVERTURE / FERMETURE / NAV
+ ************************/
+function setupModal() {
+  const overlay = document.getElementById("modal-overlay");
+  const modal = overlay?.querySelector(".modal");
+
+  const openBtn = document.getElementById("edit-button");
+  const closeBtn = document.getElementById("modal-close");
+  const backBtn = document.getElementById("modal-back");
+
+  const viewGallery = document.getElementById("modal-view-gallery");
+  const viewAdd = document.getElementById("modal-view-add");
+
+  const btnOpenAdd = document.getElementById("btn-open-add");
+
+  if (
+    !overlay ||
+    !modal ||
+    !openBtn ||
+    !closeBtn ||
+    !backBtn ||
+    !viewGallery ||
+    !viewAdd ||
+    !btnOpenAdd
+  )
+    return;
+
+  function showGalleryView() {
+    viewGallery.style.display = "block";
+    viewAdd.style.display = "none";
+    backBtn.style.visibility = "hidden";
+  }
+
+  function showAddView() {
+    viewGallery.style.display = "none";
+    viewAdd.style.display = "block";
+    backBtn.style.visibility = "visible";
+  }
+
+  function openModal() {
+    overlay.style.display = "flex";
+    showGalleryView(); // par défaut, on ouvre sur la galerie
+  }
+
+  function closeModal() {
+    overlay.style.display = "none";
+  }
+
+  // Ouvrir au clic sur "Modifier"
+  openBtn.addEventListener("click", openModal);
+
+  // Fermer au clic sur la croix
+  closeBtn.addEventListener("click", closeModal);
+
+  // Fermer au clic en dehors de la modale (sur l’overlay)
+  overlay.addEventListener("click", closeModal);
+
+  // Empêcher la fermeture si on clique dans la modale
+  modal.addEventListener("click", (e) => e.stopPropagation());
+
+  // Aller sur le formulaire au clic "Ajouter une photo"
+  btnOpenAdd.addEventListener("click", showAddView);
+
+  // Revenir à la galerie au clic sur la flèche
+  backBtn.addEventListener("click", showGalleryView);
+}
+
+/************************
+ *  AFFICHAGE GALERIE MODALE
+ ************************/
+function displayModalWorks(works) {
+  const modalGallery = document.getElementById("modal-gallery");
+  if (!modalGallery) return;
+
+  modalGallery.innerHTML = "";
+
+  works.forEach((work) => {
+    const figure = document.createElement("figure");
+    figure.classList.add("modal-figure");
+
+    const img = document.createElement("img");
+    img.src = work.imageUrl;
+    img.alt = work.title;
+
+    const trashBtn = document.createElement("button");
+    trashBtn.type = "button";
+    trashBtn.classList.add("modal-trash");
+    trashBtn.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+
+    figure.appendChild(img);
+    figure.appendChild(trashBtn);
+    modalGallery.appendChild(figure);
+  });
+}
+
+/************************
  *  LANCEMENT AU CHARGEMENT
  ************************/
 document.addEventListener("DOMContentLoaded", () => {
   applyEditMode();
+  setupModal();
   init();
 });
