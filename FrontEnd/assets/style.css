@@ -133,7 +133,7 @@ table {
 body {
   font-family: "Work Sans";
   font-size: 14px;
-  padding-top: 4rem;
+
 }
 header {
   display: flex;
@@ -399,11 +399,15 @@ footer nav {
  ***********************/
 .modal-overlay {
   position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 30px 20px; /* ✅ évite d’être collée en haut/bas */
+  box-sizing: border-box;
 
   z-index: 2000;
 }
@@ -411,10 +415,12 @@ footer nav {
 .modal {
   width: 600px;
   max-width: calc(100vw - 40px);
-  overflow-y: auto;
+
   background: white;
   border-radius: 8px;
   padding: 20px;
+
+  box-sizing: border-box;
 }
 
 .modal-header {
@@ -437,7 +443,7 @@ footer nav {
   font-size: 26px;
 }
 
-/* ✅ un seul bloc modal-gallery (fusionné) */
+/*  un seul bloc modal-gallery (fusionné) */
 .modal-gallery {
   min-height: 120px;
   margin: 10px 80px;
@@ -496,7 +502,7 @@ footer nav {
  *  BANDEAU MODE ÉDITION
  ***********************/
 #edit-banner {
-  position: fixed;
+  
   top: 0;
   left: 0;
   right: 0;
@@ -511,4 +517,4 @@ footer nav {
   gap: 8px;
 
   z-index: 3000;
-}
+
