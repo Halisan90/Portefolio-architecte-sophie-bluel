@@ -66,6 +66,30 @@ async function fetchJSON(url) {
 }
 
 /************************
+ *  SUPPRESSION D'UN TRAVAIL
+ ************************/
+async function deleteWork(workId) {
+  let token = localStorage.getItem("token");
+  token = token.replace(/['"]/g, "").trim();
+
+  const res = await fetch(`${WORKS_URL}/${workId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  });
+
+  if (!res.ok) {
+    alert("Suppression refusée (HTTP " + res.status + ")");
+    return;
+  }
+
+  allWorks = allWorks.filter((work) => work.id !== workId);
+  displayWorks(allWorks);
+  displayModalWorks(allWorks);
+}
+
+/************************
  *  AFFICHAGE DES PROJETS
  ************************/
 function displayWorks(works) {
@@ -244,6 +268,13 @@ function displayModalWorks(works) {
     trashBtn.type = "button";
     trashBtn.classList.add("modal-trash");
     trashBtn.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+
+    trashBtn.addEventListener("click", () => {
+      const ok = confirm("Voulez-vous vraiment supprimer ce projet ?");
+      if (!ok) return;
+
+      deleteWork(work.id);
+    });
 
     figure.appendChild(img);
     figure.appendChild(trashBtn);
