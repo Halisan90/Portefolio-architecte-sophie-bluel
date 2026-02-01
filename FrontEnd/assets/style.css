@@ -256,9 +256,17 @@ li:hover {
   grid-row-gap: 20px;
 }
 
-.gallery img {
+.gallery figure {
   width: 100%;
 }
+
+.gallery img {
+  width: 305px;
+  height: 407px;
+  object-fit: cover;
+  display: block;
+}
+
 #contact {
   width: 50%;
   margin: auto;
