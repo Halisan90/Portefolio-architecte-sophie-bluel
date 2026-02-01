@@ -133,7 +133,6 @@ table {
 body {
   font-family: "Work Sans";
   font-size: 14px;
-
 }
 header {
   display: flex;
@@ -446,13 +445,12 @@ footer nav {
 /*  un seul bloc modal-gallery (fusionné) */
 .modal-gallery {
   min-height: 120px;
-  margin: 10px 80px;
+  margin: 10px 80px 40px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 30px 10px;
-  max-height: 420px; /* limite la zone images */
+  max-height: 420px;
   overflow: hidden;
-  margin-bottom: 40px;
   border-bottom: 1px solid #b3b3b3;
   padding-bottom: 60px;
 }
@@ -461,16 +459,6 @@ footer nav {
   display: flex;
   justify-content: center;
   margin: 20px;
-}
-
-.modal-primary-btn {
-  border: none;
-  padding: 10px 60px;
-  border-radius: 60px;
-  background: #1d6154;
-  color: white;
-  cursor: pointer;
-  font-size: 17px;
 }
 
 .modal-figure {
@@ -498,11 +486,157 @@ footer nav {
   place-items: center;
 }
 
+/*****Ajout photo*****/
+#modal-view-add {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.modal-add-photo-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  background-color: #e8f1f6;
+  width: 420px;
+  height: 170px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.modal-add-photo-icon {
+  border-radius: 50px;
+  width: 173px;
+  height: 36px;
+  background-color: #cbd6dc;
+  color: #306685;
+  font-weight: bold;
+  display: block;
+  text-align: center;
+  line-height: 36px;
+  margin: 10px auto;
+  cursor: pointer;
+}
+
+.modal-form {
+  width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.modal-form label {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  text-align: left;
+}
+
+.modal-form input,
+.modal-form select {
+  width: 100%;
+  padding: 15px 14px;
+
+  outline: none;
+  box-shadow:
+    0px 0px 11px 2px rgba(29, 97, 84, 0.2),
+    inset 0px 0px 0px 0px rgba(0, 0, 0, 0.12);
+  border: none;
+  box-sizing: border-box;
+}
+
+.icon-image {
+  width: 76px;
+  height: 76px;
+  filter: invert(70%) sepia(10%) saturate(400%) hue-rotate(160deg);
+}
+
+.file-info {
+  font-size: 10px;
+  color: #444444;
+}
+
+#image-preview {
+  width: 129px;
+  height: 169px;
+  object-fit: cover;
+  border-radius: 3px;
+}
+
+#modal-view-add .modal-actions {
+  border-top: 1px solid #b3b3b3;
+  padding-top: 30px;
+}
+/* ============ Messages modale ajout ============ */
+#add-error.msg-error {
+  color: #d00000;
+}
+
+#add-error.msg-success {
+  color: #1d6154;
+}
+
+/* ===============================
+   BOUTONS MODALE
+================================ */
+
+/* Base : tous les boutons de la modale sont verts */
+.modal-primary-btn {
+  border: none;
+  border-radius: 60px;
+  padding: 10px 60px;
+  font-size: 17px;
+  color: white;
+  background-color: #1d6154; /* VERT */
+  cursor: pointer;
+}
+
+/* Bouton "Valider" (vue ajout) */
+#modal-view-add .modal-primary-btn {
+  width: 237px;
+  height: 36px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+/* Valider désactivé = gris */
+#modal-view-add .modal-primary-btn:disabled {
+  background-color: #a7a7a7;
+  cursor: not-allowed;
+}
+
+/* Valider actif = vert */
+#modal-view-add .modal-primary-btn:not(:disabled) {
+  background-color: #1d6154;
+  cursor: pointer;
+}
+
+/* ===============================
+   MESSAGE ERREUR / SUCCÈS
+================================ */
+
+#add-error.msg-error {
+  color: #d00000;
+}
+
+#add-error.msg-success {
+  color: #1d6154;
+}
+
 /***********************
  *  BANDEAU MODE ÉDITION
  ***********************/
 #edit-banner {
-  
   top: 0;
   left: 0;
   right: 0;
@@ -517,4 +651,4 @@ footer nav {
   gap: 8px;
 
   z-index: 3000;
-
+}

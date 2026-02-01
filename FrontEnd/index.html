@@ -145,7 +145,57 @@
         <div id="modal-view-add" style="display: none">
           <h3 class="modal-title">Ajout photo</h3>
 
-          <form id="add-work-form">
+          <div class="modal-add-photo-preview">
+            <!-- ✅ Preview (cachée au début) -->
+            <img
+              id="image-preview"
+              class="preview-img"
+              alt="Aperçu"
+              style="display: none"
+            />
+
+            <!-- ✅ Placeholder (visible au début) -->
+            <img
+              id="upload-placeholder-icon"
+              src="https://unpkg.com/lucide-static/icons/image.svg"
+              class="icon-image"
+              alt="Image placeholder"
+            />
+
+            <!-- ✅ Bouton qui ouvre le sélecteur -->
+            <label for="photo-input" class="modal-add-photo-icon"
+              >+ Ajouter photo</label
+            >
+
+            <!-- ✅ Le vrai input file -->
+            <input
+              type="file"
+              id="photo-input"
+              name="image"
+              accept="image/png, image/jpeg"
+              hidden
+            />
+
+            <p class="file-info">jpg, png : 4mo max</p>
+          </div>
+
+          <p id="add-error" class="login-error"></p>
+
+          <form id="add-work-form" class="modal-form">
+            <p>
+              <label>
+                Titre
+                <input type="text" id="work-title" name="title" required />
+              </label>
+            </p>
+
+            <p>
+              <label>
+                Catégorie
+                <select id="work-category" name="category" required></select>
+              </label>
+            </p>
+
             <div class="modal-actions">
               <button class="modal-primary-btn" type="submit">Valider</button>
             </div>
