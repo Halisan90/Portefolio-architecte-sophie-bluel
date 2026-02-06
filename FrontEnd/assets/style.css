@@ -396,7 +396,7 @@ footer nav {
 .login-error {
   color: #d00000;
   margin-top: 12px;
-  min-height: 18px; /* évite que la page "saute" */
+  min-height: 18px;
   text-align: center;
   font-weight: 600;
 }
@@ -413,7 +413,7 @@ footer nav {
   justify-content: center;
   align-items: center;
 
-  padding: 30px 20px; /* ✅ évite d’être collée en haut/bas */
+  padding: 30px 20px;
   box-sizing: border-box;
 
   z-index: 2000;
@@ -439,7 +439,7 @@ footer nav {
 .modal-icon-btn {
   border: none;
   background: transparent;
-  font-size: 40px;
+  margin: 15px;
   cursor: pointer;
 }
 
@@ -453,12 +453,15 @@ footer nav {
 /*  un seul bloc modal-gallery (fusionné) */
 .modal-gallery {
   min-height: 120px;
-  margin: 10px 80px 40px;
+  margin: 10px auto 40px;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(5, 76px);
   gap: 30px 10px;
+  width: 420px;
+  max-width: 100%;
   max-height: 420px;
-  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: visible;
   border-bottom: 1px solid #b3b3b3;
   padding-bottom: 60px;
 }
@@ -471,10 +474,15 @@ footer nav {
 
 .modal-figure {
   position: relative;
+  width: 76px;
+  height: 102px;
+  overflow: hidden;
 }
 
 .modal-figure img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
 }
 
@@ -565,7 +573,6 @@ footer nav {
 .icon-image {
   width: 76px;
   height: 76px;
-  filter: invert(70%) sepia(10%) saturate(400%) hue-rotate(160deg);
 }
 
 .file-info {
